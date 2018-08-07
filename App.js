@@ -5,20 +5,40 @@ export default class App extends React.Component {
 
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      value: "Edit me",
+    }
+    this.handleChangeText = this.handleChangeText.bind(this)
 
+  }
+
+  handleChangeText(newText) {
+    this.setState({
+      value: newText
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
+
         <Text style={styles.title}>
           MoodTracker
         </Text>
+
         <Text style={styles.explanation}>
           Please enter your Activity:
         </Text>
-        <TextInput style={styles.input}/>
+
+        <TextInput style={styles.input}
+          defaultValue={this.state.value}
+          onChangeText={this.handleChangeText}
+        />
+
+        <Text style={styles.explanation}>
+        Your activity is {this.state.value}
+        </Text>
+        
       </View>
     );
   }
@@ -26,11 +46,13 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1
+    flex:1,
+    backgroundColor: '#00008b'
   },
   title: {
     backgroundColor: 'green',
-    height: 50,
+    height: 60,
+    top: 25,
   },
   explanation: {
     backgroundColor: 'lightblue',
@@ -45,5 +67,7 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     backgroundColor: 'white',
+    borderWidth: 2,
+    margin: 5,
   }
 });
