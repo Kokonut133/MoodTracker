@@ -1,15 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { createBottomTabNavigator } from 'react-navigation';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import Icon from 'react-native-vector-icons/Ionicons'
 
-export default class App extends React.Component {
-
+class EntryScreen extends React.Component {
   constructor() {
     super()
     this.state = {
       value: "Edit me",
     }
     this.handleChangeText = this.handleChangeText.bind(this)
-
   }
 
   handleChangeText(newText) {
@@ -36,13 +37,40 @@ export default class App extends React.Component {
         />
 
         <Text style={styles.explanation}>
-        Your activity is {this.state.value}
+        Your activity is :{this.state.value}
         </Text>
         
       </View>
     );
   }
 }
+
+class SecondScreen extends React.Component {
+  render(){
+    return(
+    <View>
+      <Text>New Stuff</Text>
+    </View>
+    )
+  }
+}
+
+export default createMaterialBottomTabNavigator({
+  EntryScreen: { 
+    screen: EntryScreen,
+    navigationOptions: {
+      tabBarLabel: 'Entry',
+      /*
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="ios-home" color={tintColor} size={24} />
+      )
+      */
+    } 
+  },
+  SecondScreen: { 
+    screen: SecondScreen 
+  },
+});
 
 const styles = StyleSheet.create({
   container: {
