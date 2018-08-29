@@ -1,10 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation';
+import { AsyncStorage, StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Icon } from 'react-native-elements'
 
 class EntryScreen extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+
+        <Text style={styles.title}>
+          Entry
+        </Text>
+
+        <Icon name='rowing' reverse/>
+
+        <TextInput style={styles.input}
+          defaultValue={this.state.value}
+          onChangeText={this.handleChangeText}
+        />
+
+        <Text style={styles.explanation}>
+        Your activity is :{this.state.value}
+        </Text>
+
+        <TouchableOpacity onPress={this.displayActivityList}>
+          <Text>Press me</Text>
+        </TouchableOpacity>
+        
+      </View>
+    );
+  }
   constructor() {
     super()
     this.state = {
@@ -18,40 +43,35 @@ class EntryScreen extends React.Component {
       value: newText
     })
   }
-
-  render() {
-    return (
-      <View style={styles.container}>
-
-        <Text style={styles.title}>
-          MoodTracker
-        </Text>
-
-        <Text style={styles.explanation}>
-          Please enter your Activity:
-        </Text>
-
-        <TextInput style={styles.input}
-          defaultValue={this.state.value}
-          onChangeText={this.handleChangeText}
-        />
-
-        <Text style={styles.explanation}>
-        Your activity is :{this.state.value}
-        </Text>
-        
-      </View>
-    );
+  
+  displayActivityList = async () => {
+    try{
+      let activities = await AsyncStorage.getAllKeys();
+      alert(activities)
+    } catch(error){
+      alert(error)
+    }
   }
+  
 }
 
 class SecondScreen extends React.Component {
   render(){
     return(
-    <View>
-      <Text>New Stuff</Text>
+    <View styles={styles.container}>
+      <Text style={styles.explanation}>Type in new Activity</Text>
+
+      <TouchableOpacity onPress={this.saveActivity}>
+        <Text>Add Activity</Text>
+      </TouchableOpacity>
     </View>
     )
+  }
+
+  saveActivity() {
+    let newActivity = 'Coding';
+    AsyncStorage.setItem('availableActivities', newActivity)
+    alert('saved:' + newActivity)
   }
 }
 
@@ -60,11 +80,6 @@ export default createMaterialBottomTabNavigator({
     screen: EntryScreen,
     navigationOptions: {
       tabBarLabel: 'Entry',
-      /*
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="ios-home" color={tintColor} size={24} />
-      )
-      */
     } 
   },
   SecondScreen: { 
@@ -75,12 +90,15 @@ export default createMaterialBottomTabNavigator({
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor: '#00008b'
+    backgroundColor: '#00008b',
   },
   title: {
     backgroundColor: 'green',
     height: 60,
-    top: 25,
+    top: 30,
+    fontWeight: 'bold',
+    fontSize: 20,
+    textAlign: 'center',
   },
   explanation: {
     backgroundColor: 'lightblue',
@@ -97,5 +115,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 2,
     margin: 5,
-  }
+  },
+
 });
