@@ -1,7 +1,7 @@
 import React from 'react';
 import { AsyncStorage, StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
-import { Icon } from 'react-native-elements'
+import { Activity } from './components/Activity/Activity.js'
 
 class EntryScreen extends React.Component {
   render() {
@@ -12,7 +12,7 @@ class EntryScreen extends React.Component {
           Entry
         </Text>
 
-        <Icon name='rowing' reverse/>
+        <Activity iconName='rowing'></Activity>
 
         <TextInput style={styles.input}
           defaultValue={this.state.value}
@@ -68,10 +68,8 @@ class SecondScreen extends React.Component {
     )
   }
 
-  saveActivity() {
-    let newActivity = 'Coding';
-    AsyncStorage.setItem('availableActivities', newActivity)
-    alert('saved:' + newActivity)
+  async saveActivity() {
+    alert('pressed')
   }
 }
 
