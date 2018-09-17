@@ -33,7 +33,7 @@ class EntryScreen extends React.Component {
   constructor() {
     super()
     this.state = {
-      value: "Edit me",
+      value: " Edit ME ",
     }
     this.handleChangeText = this.handleChangeText.bind(this)
   }
@@ -44,15 +44,12 @@ class EntryScreen extends React.Component {
     })
   }
   
-  displayActivityList = async () => {
-    try{
-      let activities = await AsyncStorage.getAllKeys();
-      alert(activities)
-    } catch(error){
-      alert(error)
-    }
+  displayActivityList() {
+    AsyncStorage.getItem('availableActivities').then((activity) => {
+      alert(activity)
+    })
   }
-  
+
 }
 
 class SecondScreen extends React.Component {
@@ -61,15 +58,30 @@ class SecondScreen extends React.Component {
     <View styles={styles.container}>
       <Text style={styles.explanation}>Type in new Activity</Text>
 
-      <TouchableOpacity onPress={this.saveActivity}>
+      <TouchableOpacity onPress={this.extendAvailableActivities}>
         <Text>Add Activity</Text>
       </TouchableOpacity>
     </View>
     )
   }
 
-  async saveActivity() {
-    alert('pressed')
+  async loadAvailableActivities() {
+    try {
+      return JSON.parse(AsyncStorage.getItem('availableActivities'));
+    } catch (error) {
+      alert("Couldn't load Activities!")
+    }
+  }
+
+  async extendAvailableActivities() {
+    try{
+      let activities = await this.loadAvailableActivities()
+      //newActivity = JSON.stringify("eating")
+      //alert(newActivity)
+      alert(activities)
+    } catch (error){
+      alert("Couldn't extend Acivities!")
+    }
   }
 }
 
