@@ -6,12 +6,13 @@ import styles from './styles.js'
 export class Activity extends Component {
     constructor(props) {
         super(props)
+        this.name = this.props.iconName
     }
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <Icon reverse name={this.props.iconName}></Icon>
-                <Text style={styles.belowButton}> styles </Text>
+                <Text> {this.name} </Text>
             </View>
         )
     }

@@ -8,77 +8,108 @@ class EntryScreen extends React.Component {
     return (
       <View style={styles.container}>
 
-        <Text style={styles.title}>
-          Entry
-        </Text>
+        <View style={styles.topBarArea}>
+          <Text stlye={styles.titleText}>
+            Entry
+          </Text>
+        </View>
 
-        <Activity iconName='rowing'></Activity>
+        <View style={styles.activityButtonsArea}>
+          <Activity iconName='rowing'></Activity>
+          <Activity iconName='rowing'></Activity>
+          <Activity iconName='rowing'></Activity>
+          <Activity iconName='rowing'></Activity>
+          <Activity iconName='rowing'></Activity>
+          <Activity iconName='rowing'></Activity>
+          <Activity iconName='rowing'></Activity>
+          <Activity iconName='rowing'></Activity>
+        </View>
 
-        <TextInput style={styles.input}
-          defaultValue={this.state.value}
-          onChangeText={this.handleChangeText}
-        />
+        <View style={styles.explanationArea}>
+          <TextInput ref="newActivityInput" 
+            style={styles.input} 
+            defaultValue={this.state.activity}
+            onChangeText={this.handleActivityInput.bind(this)}
+            />
 
-        <Text style={styles.explanation}>
-        Your activity is :{this.state.value}
-        </Text>
+          <Text>current state: {this.state.activityButtons}</Text>
 
-        <TouchableOpacity onPress={this.displayActivityList}>
-          <Text>Press me</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={this.addAvailableActivity}>
+            <Text>Add activity</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.loadAvailableActivities}>
+            <Text>Load Activities</Text>
+          </TouchableOpacity>
+        </View>
         
       </View>
     );
   }
+
   constructor() {
     super()
-    this.state = {
-      value: " Edit ME ",
-    }
-    this.handleChangeText = this.handleChangeText.bind(this)
-  }
+    this.state = {}
+    this.addAvailableActivity = this.addAvailableActivity.bind(this)
+  } 
 
-  handleChangeText(newText) {
+  handleActivityInput(newText){
     this.setState({
-      value: newText
-    })
-  }
-  
-  displayActivityList() {
-    AsyncStorage.getItem('availableActivities').then((activity) => {
-      alert(activity)
+        activity: newText
     })
   }
 
+  addAvailableActivity(){
+
+  }
+
+  /*
+  async addAvailableActivity(event){
+    alert("adding")
+    const activity = this.activity
+    alert(activity)
+    const availableActivities = await AsyncStorage.getItem('availableActivities')
+    let newAvailableActivities = JSON.parse(availableActivities)
+    if (!newAvailableActivities) {
+      newAvailableActivities = []
+    }
+    newAvailableActivities.push(activity)
+    await AsyncStorage.setItem("availableActivities", JSON.stringify(newAvailableActivities));
+  }
+
+  async loadAvailableActivities() {
+    try {
+      var activities = await AsyncStorage.getItem("availableActivities");
+      alert(activities)
+      return activities
+    } catch (error) {
+      return ("Couldn't load Activities!")
+    }
+  }
+
+*/
 }
 
 class SecondScreen extends React.Component {
   render(){
     return(
     <View styles={styles.container}>
-      <Text style={styles.explanation}>Type in new Activity</Text>
+      <View style={styles.explanationArea}>
+        <Text>Type in new Activity</Text>
 
-      <TouchableOpacity onPress={this.extendAvailableActivities}>
-        <Text>Add Activity</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={this.extendAvailableActivities}>
+          <Text>Add Activity</Text>
+        </TouchableOpacity>
+      </View>
+
     </View>
     )
-  }
-
-  async loadAvailableActivities() {
-    try {
-      return JSON.parse(AsyncStorage.getItem('availableActivities'));
-    } catch (error) {
-      alert("Couldn't load Activities!")
-    }
   }
 
   async extendAvailableActivities() {
     try{
       let activities = await this.loadAvailableActivities()
-      //newActivity = JSON.stringify("eating")
-      //alert(newActivity)
-      alert(activities)
+      return activities
     } catch (error){
       alert("Couldn't extend Acivities!")
     }
@@ -100,31 +131,28 @@ export default createMaterialBottomTabNavigator({
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor: '#00008b',
   },
-  title: {
+  topBarArea: {
+    flex: 1,
     backgroundColor: 'green',
-    height: 60,
-    top: 30,
-    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  titleText: {
     fontSize: 20,
-    textAlign: 'center',
   },
-  explanation: {
-    backgroundColor: 'lightblue',
-    height: 50,
-  },
-  activity: {
-    padding: 10,
+  activityButtonsArea: {
+    flex: 6,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
   },
-  input: {
-    height: 50,
+  explanationArea: {
+    flex: 2,
+    backgroundColor: 'lightblue',
+  },
+  inputArea: {
+    height: 60,
     backgroundColor: 'white',
-    borderWidth: 2,
-    margin: 5,
+    padding: 20,
   },
 
 });
