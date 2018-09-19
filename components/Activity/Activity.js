@@ -10,7 +10,7 @@ export class Activity extends Component {
     }
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.buttonAndText}>
                 <Icon reverse name={this.props.iconName}></Icon>
                 <Text> {this.name} </Text>
             </View>

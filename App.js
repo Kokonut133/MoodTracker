@@ -3,6 +3,7 @@ import { AsyncStorage, StyleSheet, Text, TextInput, View, TouchableOpacity } fro
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 import { Activity } from './components/Activity/Activity.js'
 
+
 class EntryScreen extends React.Component {
   render() {
     return (
@@ -15,14 +16,14 @@ class EntryScreen extends React.Component {
         </View>
 
         <View style={styles.activityButtonsArea}>
-          <Activity iconName='rowing'></Activity>
-          <Activity iconName='rowing'></Activity>
-          <Activity iconName='rowing'></Activity>
-          <Activity iconName='rowing'></Activity>
-          <Activity iconName='rowing'></Activity>
-          <Activity iconName='rowing'></Activity>
-          <Activity iconName='rowing'></Activity>
-          <Activity iconName='rowing'></Activity>
+          <Activity style={styles.activityButton} iconName='rowing'></Activity>
+          <Activity style={styles.activityButton} iconName='rowing'></Activity>
+          <Activity style={styles.activityButton} iconName='rowing'></Activity>
+          <Activity style={styles.activityButton} iconName='rowing'></Activity>
+          <Activity style={styles.activityButton} iconName='rowing'></Activity>
+          <Activity style={styles.activityButton} iconName='rowing'></Activity>
+          <Activity style={styles.activityButton} iconName='rowing'></Activity>
+          <Activity style={styles.activityButton} iconName='rowing'></Activity>
         </View>
 
         <View style={styles.explanationArea}>
@@ -144,6 +145,12 @@ const styles = StyleSheet.create({
   activityButtonsArea: {
     flex: 6,
     flexDirection: 'row',
+    flexWrap:'wrap',
+    justifyContent: 'center',
+  },
+  activityButton: {
+    backgroundColor:'red',
+    margin: 3,
   },
   explanationArea: {
     flex: 2,
