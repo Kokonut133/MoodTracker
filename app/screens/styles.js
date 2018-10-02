@@ -32,5 +32,16 @@ export default styles = StyleSheet.create({
       backgroundColor: 'white',
       padding: 20,
     },
+    settingsItem: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 30,
+      backgroundColor: 'rgb(51, 153, 255)'
+    },
+    settingsFont: {
+      fontSize: 20,
+      fontWeight: 'bold'
+    }
   
   });

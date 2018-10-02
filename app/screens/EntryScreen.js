@@ -19,7 +19,7 @@ export default class EntryScreen extends React.Component {
         </View>
 
         <View style={styles.activityButtonsArea}>
-          <Activity style={styles.activityButton} iconName='rowing'></Activity>
+          <Activity style={styles.activityButton} iconName='camera'></Activity>
           <Activity style={styles.activityButton} iconName='rowing'></Activity>
           <Activity style={styles.activityButton} iconName='rowing'></Activity>
           <Activity style={styles.activityButton} iconName='rowing'></Activity>
