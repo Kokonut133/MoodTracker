@@ -10,22 +10,26 @@ export default styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
-    titleText: {
-      fontSize: 20,
-    },
     activityButtonsArea: {
       flex: 3,
       flexDirection: 'row',
       flexWrap:'wrap',
       justifyContent: 'center',
     },
+    explanationArea: {
+      height: 120,
+    },
+    inputArea: {
+      height: 60,
+      backgroundColor: 'white',
+      padding: 20,
+    },
+    titleText: {
+      fontSize: 20,
+    },
     activityButton: {
       backgroundColor:'red',
       margin: 3,
-    },
-    explanationArea: {
-      flex: 2,
-      backgroundColor: 'lightblue',
     },
     inputArea: {
       height: 60,
@@ -43,5 +47,4 @@ export default styles = StyleSheet.create({
       fontSize: 20,
       fontWeight: 'bold'
     }
-  
   });

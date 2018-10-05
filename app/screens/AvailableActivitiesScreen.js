@@ -15,25 +15,11 @@ export default class availableActivitiesScreen extends React.Component {
   
         <View style={styles.topBarArea}>
           <Text style={styles.titleText}>
-            Settings
+            Add activity
           </Text>
         </View>
 
         <View style={styles.explanationArea}>
-
-          <MenuProvider>
-            <Menu onSelect={value => alert(`Selected number: ${value}`)}>
-              <MenuTrigger text='Add activity' />
-              <MenuOptions>
-                <MenuOption value={1} text='One' />
-                <MenuOption value={2}>
-                  <Text style={{color: 'red'}}>Two</Text>
-                </MenuOption>
-                <MenuOption value={3} disabled={true} text='Three' />
-              </MenuOptions>
-            </Menu>
-          </MenuProvider>
-
           <Text>Type in new Activity</Text>
           <TextInput ref="newActivityInput" 
               style={styles.input}

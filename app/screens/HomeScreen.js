@@ -3,9 +3,9 @@ import {Activity} from '../components/Activity/Activity.js'
 import {View, Text} from 'react-native';
 import styles from './styles.js';
 
-export default class EntryScreen extends React.Component {
+export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title:'EntryScreen'
+    title:'Home'
   };
   
   render() {

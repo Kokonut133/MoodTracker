@@ -20,7 +20,9 @@ export default class SettingsScreen extends React.Component {
 
           <ScrollView>
             <View key='1' style={styles.settingsItem}>
-              <Text style={styles.settingsFont}>Activities</Text>
+              <Text  
+                style={styles.settingsFont}
+                onPress = { () => this.props.navigation.navigate('availableActivitiesScreen')}>Activities</Text>
             </View>
           </ScrollView>
 
